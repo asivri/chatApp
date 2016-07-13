@@ -10,8 +10,19 @@ app.use(express.static(__dirname + '/public'));
 
 //TODO: Improve the code and add username
 //TODO: Fix below
-io.on('connection', function(){
+io.on('connection', function(socket){
   console.log('A user connected!');
+
+  socket.on('message', function(message){
+    console.log('Message recieved ' + message.text);
+
+    //Send the message everybody but the sender
+    socket.broadcast.emit('message', message);
+  });
+
+  socket.emit('message', {
+    text: 'Welcome to the app!'
+  });
 });
 
 http.listen(PORT, function(){
