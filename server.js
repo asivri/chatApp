@@ -9,12 +9,12 @@ var io = require('socket.io')(http);
 app.use(express.static(__dirname + '/public'));
 
 //TODO: Improve the code and add username
-//TODO: Fix below
+
 io.on('connection', function(socket){
   console.log('A user connected!');
 
   socket.on('message', function(message){
-    console.log('Message recieved ' + message.text);
+    console.log('Message recieved: ' + message.text);
 
     //Send the message everybody but the sender
     socket.broadcast.emit('message', message);
