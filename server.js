@@ -26,6 +26,7 @@ io.on('connection', function(socket){
   //Adding message time to the app
 
   socket.emit('message', {
+    name: 'System',
     text: 'Welcome to the app!',
     timestamp: moment().valueOf()
   });
