@@ -4,8 +4,15 @@ var socket = io();
 
 console.log(name + ' wants to join to ' + room);
 
+//Update h1 tag
+jQuery('.room-title').text(room);
+
 socket.on("connect", function(){
   console.log("Connected a user");
+  socket.emit('joinRoom', {
+    name: name,
+    room: room
+  });
 });
 
 socket.on("message", function(message){
@@ -15,9 +22,9 @@ socket.on("message", function(message){
   console.log("New Message: ");
   console.log(message.text);
 
-  //$message.append('<p><strong>' + message.name + ' ' + momentTimestamp.local().format('h: mm a') +'</strong></p>');
-  //$message.append('<p>' + message.text + '</p>');
-  jQuery('.messages').append('<p><strong>'+ message.name +': ' + momentTimestamp.local().format('h: mm a') + ': </strong>' + message.text + '</p>');
+  $message.append('<p><strong>' + message.name + ' ' + momentTimestamp.local().format('h: mm a') +'</strong></p>');
+  $message.append('<p>' + message.text + '</p>');
+  //jQuery('.messages').append('<p><strong>'+ message.name +': ' + momentTimestamp.local().format('h: mm a') + ': </strong>' + message.text + '</p>');
 });
 
 // Message submit part
