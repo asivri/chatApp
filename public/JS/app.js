@@ -22,9 +22,9 @@ socket.on("message", function(message){
   console.log("New Message: ");
   console.log(message.text);
 
-  $message.append('<p><strong>' + message.name + ' ' + momentTimestamp.local().format('h: mm a') +'</strong></p>');
-  $message.append('<p>' + message.text + '</p>');
-  //jQuery('.messages').append('<p><strong>'+ message.name +': ' + momentTimestamp.local().format('h: mm a') + ': </strong>' + message.text + '</p>');
+  //$message.append('<p><strong>' + message.name + ' ' + momentTimestamp.local().format('h: mm a') +'</strong></p>');
+  //$message.append('<p>' + message.text + '</p>');
+  jQuery('.messages').append('<p><strong>'+ message.name +': ' + momentTimestamp.local().format('h: mm a') + ': </strong>' + message.text + '</p>');
 });
 
 // Message submit part
